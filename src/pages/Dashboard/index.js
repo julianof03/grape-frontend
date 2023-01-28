@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import {
   Container, Ingredients,
-  PrecifyContainer
 } from './DashboardStyle.js';
 import { FormFunction } from './Form';
+import {PrecifyFunction} from './PrecifyContainer';
 
 
 export default function Dashboard() {
@@ -14,16 +14,6 @@ export default function Dashboard() {
   const [ProductValue, SetProductValue] = useState(0);
   const [precifyNumber, SetPrecifyNumber] = useState(0);
   const [percentage, SetPercentage] = useState(0);
-
-  
-
-function calculatePercentage(e) {
-  const percentage = (Number(ProductValue) + Number(finalValue)) / 100 * Number(e.target.value)
-  const precifyNumber = (Number(ProductValue) + Number(finalValue)) + percentage;
-
-  SetPercentage(percentage.toFixed(2))
-  SetPrecifyNumber(precifyNumber.toFixed(2));
-}
 
 return (
   <Container>
@@ -48,12 +38,14 @@ return (
 }
 {
   ProductMenu ?
-    <PrecifyContainer>
-      <div><p>Valor Estimado:</p><p>R$ {ProductValue}</p>  </div>
-      <div><p>Porcentagem de Lucro:</p><input onChange={(e) => { calculatePercentage(e) }} type="number"></input>  </div>
-      <div><p>Valor Final:</p><p>R$ {precifyNumber}</p>  </div>
-      <div><p>Lucro total</p><p>R$ {percentage}</p>  </div>
-    </PrecifyContainer> :
+    <PrecifyFunction
+      ProductValue = { ProductValue }
+      precifyNumber = { precifyNumber }
+      percentage = { percentage }
+      SetPercentage = {SetPercentage}
+      finalValue = {finalValue}
+      SetPrecifyNumber = {SetPrecifyNumber}
+    />:
     ""
 }
     </Container >

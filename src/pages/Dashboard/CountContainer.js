@@ -9,10 +9,13 @@ function CountContainerFunction({
     calculate,
     SetUnity,
     unity,
+    finalValue,
+    SetFinalValue,
+    grandUnity,
+    SetGrandUnity
 }){
     const [grandMenu, SetGrandMenu] = useState(false);
     const [divisorMenu, SetDivisorMenu] = useState(false);
-    const [grandUnity, SetGrandUnity] = useState("Kg");
     return(
     <CountContainer>
         <input type="number" id="value1"
@@ -37,7 +40,11 @@ function CountContainerFunction({
           <GrandMenuFunction
             SetGrandUnity = {SetGrandUnity}
             SetUnity = {SetUnity}
-            SetGrandMenu = {SetGrandMenu}/> : ""}
+            finalValue = {finalValue}
+            SetFinalValue = {SetFinalValue}
+            grandUnity = {grandUnity}
+            SetGrandMenu = {SetGrandMenu}
+            /> : ""}
 
         <ChooseContainer2>
           <button type="button" onClick={(e) => { SetGrandMenu(false); SetDivisorMenu(!divisorMenu); }}>{unity}</button>
@@ -47,7 +54,10 @@ function CountContainerFunction({
           <DivisorMenuFunction
             SetGrandUnity = {SetGrandUnity}
             SetUnity = {SetUnity}
+            finalValue = {finalValue}
             SetDivisorMenu = {SetDivisorMenu}
+            SetFinalValue = {SetFinalValue}
+            unity = {unity}
           /> : ""}
 
       </CountContainer>)

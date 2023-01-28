@@ -1,60 +1,88 @@
-
+import { useState } from 'react';
 import styled from 'styled-components';
 function DivisorMenuFunction({
     SetGrandUnity,
     SetUnity,
-    SetDivisorMenu
+    SetDivisorMenu,
+    finalValue,
+    SetFinalValue,
+    unity,
     }){
-
     return(
     <DivisorMenu>
         <button type="button"
             onClick={() => {
-            SetGrandUnity("1Kg");
-            SetUnity("1Kg");
-            SetDivisorMenu(false);
+              SetFinalValue(0)
+              if(unity === "1g" || unity === "1ml"){
+                SetFinalValue((finalValue*1000).toFixed(2))
+              }
+              SetGrandUnity("1Kg");
+              SetUnity("1Kg");
+              SetDivisorMenu(false);
             }}> 1Kg </button>
 
         <button type="button"
             onClick={() => {
-            SetGrandUnity("1U");
-            SetUnity("1U");
-            SetDivisorMenu(false);
+              if(unity === "1g" || unity === "1ml"){
+                SetFinalValue((finalValue*1000).toFixed(2))
+              }
+              SetGrandUnity("1U");
+              SetUnity("1U");
+              SetDivisorMenu(false);
             }}> 1U </button>
 
         <button type="button"
             onClick={() => {
-            SetGrandUnity("1L");
-            SetUnity("1L");
-            SetDivisorMenu(false);
+              if(unity === "1g" || unity === "1ml"){
+                SetFinalValue((finalValue*1000).toFixed(2))
+              }
+              SetGrandUnity("1L");
+              SetUnity("1L");
+              SetDivisorMenu(false);
             }}> 1L </button>
 
         <button type="button"
             onClick={() => {
-            SetGrandUnity("1Kg");
-            SetUnity("1g");
-            SetDivisorMenu(false);
+              if(unity === "1g" || unity === "1ml"){
+                SetFinalValue(finalValue);
+              }else{
+                SetFinalValue((finalValue/1000).toFixed(2))
+              }
+              SetGrandUnity("1Kg");
+              SetUnity("1g");
+              SetDivisorMenu(false);
             }}> 1g </button>
 
         <button type="button"
             onClick={() => {
-            SetGrandUnity("1L");
-            SetUnity("1ml");
-            SetDivisorMenu(false);
+              if(unity === "1g" || unity === "1ml"){
+                SetFinalValue(finalValue);
+              }else{
+                SetFinalValue((finalValue/1000).toFixed(2))
+              }
+              SetGrandUnity("1L");
+              SetUnity("1ml");
+              SetDivisorMenu(false);
             }}> 1ml </button>
     </DivisorMenu>
     )
 }
 function GrandMenuFunction({
-    SetGrandUnity,
-    SetUnity,
-    SetGrandMenu
+  SetGrandUnity,
+  SetUnity,
+  finalValue,
+  SetFinalValue,
+  grandUnity,
+  SetGrandMenu,
     }){
 
     return(
         <GrandMenu>
             <button type="button"
               onClick={() => {
+                if(grandUnity === "1g" || grandUnity === "1ml" || grandUnity === "1U"){
+                  SetFinalValue((finalValue/1000).toFixed(2))
+                }
                 SetGrandUnity("1Kg");
                 SetUnity("1g");
                 SetGrandMenu(false);
@@ -62,6 +90,9 @@ function GrandMenuFunction({
 
             <button type="button"
               onClick={() => {
+                if(grandUnity === "1g" || grandUnity === "1ml" || grandUnity === "1U"){
+                  SetFinalValue((finalValue/1000).toFixed(2))
+                }
                 SetGrandUnity("1L");
                 SetUnity("1ml");
                 SetGrandMenu(false);
@@ -69,10 +100,38 @@ function GrandMenuFunction({
 
             <button type="button"
               onClick={() => {
+                if(grandUnity === "1g" || grandUnity === "1ml" || grandUnity === "1U"){
+                  SetFinalValue(finalValue);
+                }else{
+                  SetFinalValue((finalValue*1000).toFixed(2))
+                }
                 SetGrandUnity("1U");
-                SetUnity("1u");
+                SetUnity("1U");
                 SetGrandMenu(false);
-              }}>  U </button>
+              }}> 1U </button>
+              <button type="button"
+            onClick={() => {
+              if(grandUnity === "1g" || grandUnity === "1ml" || grandUnity === "1U"){
+                SetFinalValue(finalValue);
+              }else{
+                SetFinalValue((finalValue*1000).toFixed(2))
+              }
+              SetGrandUnity("1g");
+              SetUnity("1g");
+              SetGrandMenu(false);
+            }}> 1g </button>
+
+        <button type="button"
+            onClick={() => {
+              if(grandUnity === "1g" || grandUnity === "1ml" || grandUnity === "1U"){
+                SetFinalValue(finalValue);
+              }else{
+                SetFinalValue((finalValue*1000).toFixed(2))
+              }
+              SetGrandUnity("1ml");
+              SetUnity("1ml");
+              SetGrandMenu(false);
+            }}> 1ml </button>
 
         </GrandMenu>
     );
@@ -81,13 +140,13 @@ export { DivisorMenuFunction, GrandMenuFunction }
 
 const GrandMenu = styled.div`
   width:25px;
-  height:80px;
+  height:131px;
   background-color:#E4DBF7;
   position:absolute;
   right:-25px;
   top:6px;
   display:flex;
-  border-radius: 0px 10px 10px 0px;
+  border-radius: 0px 10px 15px 15px;
   flex-direction:column;
   justify-content:center;
   align-items:center;

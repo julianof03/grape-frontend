@@ -5,29 +5,32 @@ import {
   import {CountContainerFunction} from './CountContainer.js'
 
 function FormFunction({
-    ingridienteArray,
     SetIngridienteArray,
-    percentage,
     finalValue,
     SetFinalValue,
     SetProductMenu,
-    SetProductValue
+    SetProductValue,
+    ingridienteArray
 }){
     const [name, SetName] = useState('');
     const [value1, Setvalue1] = useState(0);
     const [value2, Setvalue2] = useState(0);
     const [color, SetColor] = useState(true);
-    const [unity, SetUnity] = useState("g");
+    const [unity, SetUnity] = useState("1g");
+    const [grandUnity, SetGrandUnity] = useState("1Kg");
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        SetProductMenu(true);
         calculate(value1, value2);
         if (!name || !value1 || !value2) {
           return;
         }
+        console.log(unity.substring(1));
+        const sliceUnity = unity.substring(1);
         const newArray = {
           name,
-          unity,
+          unity: sliceUnity,
           quantidade: value2,
           finalValue,
           color
@@ -40,38 +43,41 @@ function FormFunction({
         Setvalue2(0);
         calculateProduct();
         event.target.reset();
+    }
+    function calculate(n1, n2) {
+      if (unity === "1U" || unity === "1Kg" || unity === "1L" || unity === grandUnity) {
+        const count = n1 * n2;
+        SetFinalValue(count.toFixed(2));
+        return
       }
-      function calculate(n1, n2) {
-        console.log(Number(n1), Number(n2));
-        if (unity === "1U" || unity === "1Kg" || unity === "1L") {
-          const count = Number(n1) * Number(n2);
-          SetFinalValue(Number(count.toFixed(2)));
-          return
-        }
-        const count = (Number(n1) / 1000) * Number(n2);
-        SetFinalValue(Number(count.toFixed(2)));
+      const count = n1 / 1000 * n2;
+      SetFinalValue(count.toFixed(2));
+    }
+    function calculateProduct() {
+      SetProductMenu(true);
+      let count = 0;
+      for (let i = 0; i < ingridienteArray.length; i++) {
+        count = count + Number(ingridienteArray[i].finalValue);
       }
+      console.log(count);
+      const finalCount = count + Number(finalValue);
+      SetProductValue(Number(finalCount.toFixed(2)));
+    }
       
-      function calculateProduct() {
-        SetProductMenu(true);
-        let count = 0;
-        for (let i = 0; i < ingridienteArray.length; i++) {
-          count = count + Number(ingridienteArray[i].finalValue);
-        }
-        const finalCount = count + Number(finalValue);
-        SetProductValue(Number(finalCount.toFixed(2)));
-      }
-
     return(
     <form onSubmit={handleSubmit}>
        <CountContainerFunction
-        Setvalue1 = {Setvalue1}
-        Setvalue2 = {Setvalue2}
-        value1 = {value1}
-        value2 = {value2}
-        calculate = {calculate}
-        unity = {unity}
-        SetUnity = {SetUnity}
+        Setvalue1 = { Setvalue1 }
+        Setvalue2 = { Setvalue2 }
+        value1 = { value1 }
+        value2 = { value2 }
+        calculate = { calculate }
+        unity = { unity }
+        finalValue = {finalValue}
+        SetFinalValue = {SetFinalValue}
+        SetUnity = { SetUnity }
+        grandUnity = {grandUnity}
+        SetGrandUnity = {SetGrandUnity}
        />
   
         <NameContainer>
