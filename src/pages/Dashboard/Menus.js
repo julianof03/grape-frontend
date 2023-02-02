@@ -7,13 +7,13 @@ function DivisorMenuFunction({
     finalValue,
     SetFinalValue,
     unity,
+    grandUnity,
     }){
     return(
     <DivisorMenu>
         <button type="button"
-            onClick={() => {
-              SetFinalValue(0)
-              if(unity === "1g" || unity === "1ml"){
+            onClick={() => { 
+              if((unity === "1g" || unity === "1ml") && grandUnity !== unity){
                 SetFinalValue((finalValue*1000).toFixed(2))
               }
               SetGrandUnity("1Kg");
@@ -23,7 +23,7 @@ function DivisorMenuFunction({
 
         <button type="button"
             onClick={() => {
-              if(unity === "1g" || unity === "1ml"){
+              if((unity === "1g" || unity === "1ml") && grandUnity !== unity){
                 SetFinalValue((finalValue*1000).toFixed(2))
               }
               SetGrandUnity("1U");
@@ -33,7 +33,7 @@ function DivisorMenuFunction({
 
         <button type="button"
             onClick={() => {
-              if(unity === "1g" || unity === "1ml"){
+              if( (unity === "1g" || unity === "1ml") && grandUnity !== unity){
                 SetFinalValue((finalValue*1000).toFixed(2))
               }
               SetGrandUnity("1L");
@@ -43,7 +43,7 @@ function DivisorMenuFunction({
 
         <button type="button"
             onClick={() => {
-              if(unity === "1g" || unity === "1ml"){
+              if((unity === "1g" || unity === "1ml") && grandUnity !== unity){
                 SetFinalValue(finalValue);
               }else{
                 SetFinalValue((finalValue/1000).toFixed(2))
@@ -55,7 +55,7 @@ function DivisorMenuFunction({
 
         <button type="button"
             onClick={() => {
-              if(unity === "1g" || unity === "1ml"){
+              if((unity === "1g" || unity === "1ml") && grandUnity !== unity){
                 SetFinalValue(finalValue);
               }else{
                 SetFinalValue((finalValue/1000).toFixed(2))
@@ -73,6 +73,7 @@ function GrandMenuFunction({
   finalValue,
   SetFinalValue,
   grandUnity,
+  unity,
   SetGrandMenu,
     }){
 
@@ -80,7 +81,7 @@ function GrandMenuFunction({
         <GrandMenu>
             <button type="button"
               onClick={() => {
-                if(grandUnity === "1g" || grandUnity === "1ml" || grandUnity === "1U"){
+                if(unity === grandUnity ||grandUnity === "1g" || grandUnity === "1ml" || grandUnity === "1U"){
                   SetFinalValue((finalValue/1000).toFixed(2))
                 }
                 SetGrandUnity("1Kg");
@@ -90,7 +91,7 @@ function GrandMenuFunction({
 
             <button type="button"
               onClick={() => {
-                if(grandUnity === "1g" || grandUnity === "1ml" || grandUnity === "1U"){
+                if(unity === grandUnity ||grandUnity === "1g" || grandUnity === "1ml" || grandUnity === "1U"){
                   SetFinalValue((finalValue/1000).toFixed(2))
                 }
                 SetGrandUnity("1L");
@@ -100,7 +101,7 @@ function GrandMenuFunction({
 
             <button type="button"
               onClick={() => {
-                if(grandUnity === "1g" || grandUnity === "1ml" || grandUnity === "1U"){
+                if( unity === grandUnity || grandUnity === "1g" || grandUnity === "1ml" || grandUnity === "1U"){
                   SetFinalValue(finalValue);
                 }else{
                   SetFinalValue((finalValue*1000).toFixed(2))
@@ -109,9 +110,10 @@ function GrandMenuFunction({
                 SetUnity("1U");
                 SetGrandMenu(false);
               }}> 1U </button>
-              <button type="button"
+
+            <button type="button"
             onClick={() => {
-              if(grandUnity === "1g" || grandUnity === "1ml" || grandUnity === "1U"){
+              if(unity === grandUnity ||grandUnity === "1g" || grandUnity === "1ml" || grandUnity === "1U"){
                 SetFinalValue(finalValue);
               }else{
                 SetFinalValue((finalValue*1000).toFixed(2))
@@ -119,20 +121,19 @@ function GrandMenuFunction({
               SetGrandUnity("1g");
               SetUnity("1g");
               SetGrandMenu(false);
-            }}> 1g </button>
+              }}> 1g </button>
 
-        <button type="button"
-            onClick={() => {
-              if(grandUnity === "1g" || grandUnity === "1ml" || grandUnity === "1U"){
-                SetFinalValue(finalValue);
-              }else{
-                SetFinalValue((finalValue*1000).toFixed(2))
-              }
-              SetGrandUnity("1ml");
-              SetUnity("1ml");
-              SetGrandMenu(false);
-            }}> 1ml </button>
-
+            <button type="button"
+                onClick={() => {
+                  if(unity === grandUnity ||grandUnity === "1g" || grandUnity === "1ml" || grandUnity === "1U"){
+                    SetFinalValue(finalValue);
+                  }else{
+                    SetFinalValue((finalValue*1000).toFixed(2))
+                  }
+                  SetGrandUnity("1ml");
+                  SetUnity("1ml");
+                  SetGrandMenu(false);
+                }}> 1ml </button>
         </GrandMenu>
     );
 }
@@ -161,6 +162,9 @@ const GrandMenu = styled.div`
     align-items:center;
     width: 90%;
     height:25px;
+    :hover{
+            cursor: pointer;
+      } 
   }
 `;
 
@@ -187,5 +191,8 @@ const DivisorMenu = styled.div`
     align-items:center;
     width: 100%;
     height:25px;
+    :hover{
+            cursor: pointer;
+      } 
   }
 `;

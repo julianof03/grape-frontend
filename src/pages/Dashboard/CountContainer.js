@@ -24,7 +24,7 @@ function CountContainerFunction({
           className='Top'
           placeholder='Valor'>
         </input>
-
+        <p className='cifrao'>$</p>
         <input type="number" id="value2"
           name="value2"
           onChange={(e) => { Setvalue2(e.target.value); calculate(value1, e.target.value); }}
@@ -40,6 +40,7 @@ function CountContainerFunction({
           <GrandMenuFunction
             SetGrandUnity = {SetGrandUnity}
             SetUnity = {SetUnity}
+            unity = {unity}
             finalValue = {finalValue}
             SetFinalValue = {SetFinalValue}
             grandUnity = {grandUnity}
@@ -47,7 +48,7 @@ function CountContainerFunction({
             /> : ""}
 
         <ChooseContainer2>
-          <button type="button" onClick={(e) => { SetGrandMenu(false); SetDivisorMenu(!divisorMenu); }}>{unity}</button>
+          <button type="button" onClick={(e) => { SetGrandMenu(false); SetDivisorMenu(!divisorMenu); calculate(value1, value2);}}>{unity}</button>
         </ChooseContainer2>
 
         {divisorMenu ?
@@ -57,6 +58,7 @@ function CountContainerFunction({
             finalValue = {finalValue}
             SetDivisorMenu = {SetDivisorMenu}
             SetFinalValue = {SetFinalValue}
+            grandUnity = {grandUnity}
             unity = {unity}
           /> : ""}
 
@@ -71,6 +73,7 @@ const CountContainer = styled.div`
   align-items: center;
   justify-content: left;
   background-color: #f7f7f7;
+  position:relative;
   margin-left:4%;
   width:36%;
   height:94px;
@@ -78,19 +81,22 @@ const CountContainer = styled.div`
   min-width: 150px;
     input{
       background-color: #f7f7f7;
+      color:#A17dee;
       border:none;
       width:100%;
       height:50%;
       outline:none;
       min-width:fit-content;
-    }
-    input:focus{
-      border:none;
+      :focus{
+        border:none;
+      }
     }
     .Top{
       background-color:#ede8f7;
       font-size:20px;
-      padding-left:30%;
+      padding-right:20px;
+      padding-left:20px;
+      text-align:center;
       border-radius: 10px 10px 0px 0px;
       ::placeholder{
         color:#a17dee;
@@ -100,12 +106,25 @@ const CountContainer = styled.div`
       padding-left:14%;
       font-size:18px;
       border-radius: 0px 0px 10px 10px;
-      padding-left:45px;
+      text-align:center;
+      padding-right:20px;
       ::placeholder{
         color:#b291fa;
       }
     }
-
+    .cifrao{
+      display:flex;
+      color:#b291fa;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      position:absolute;
+      width:20px;
+      height:28px;
+      background-color:#ede8f7;
+      top:9px;
+      left:0px;
+    }
 `;
 const ChooseContainer = styled.div`
   width:20%;
@@ -123,6 +142,9 @@ const ChooseContainer = styled.div`
       border-radius: 0px 10px 0px 0px;
       width:100%;
       height:100%;
+      :hover{
+            cursor: pointer;
+      } 
     }
 `;
 const ChooseContainer2 = styled.div`
@@ -141,5 +163,8 @@ const ChooseContainer2 = styled.div`
       height:100%;
       border: none;
       border-radius: 0px 0px 10px 0px;
+      :hover{
+            cursor: pointer;
+      } 
     }
 `;

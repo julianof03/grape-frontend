@@ -34,6 +34,13 @@ const Container = styled.div`
       background-color:#8057d3;
       font-size:22px;
       color:#f7f7f7;
+      :hover{
+            cursor: pointer;
+      }
+  }
+  .message{
+    color:#A17dee;
+    margin-top:105px;
   }
 `;
 const Ingredients = styled.div`
@@ -76,7 +83,8 @@ const NameContainer = styled.div`
       width:100%;
       height:50%;
       outline:none;
-      padding-left:32%;
+      color:#A17dee;
+      text-align:center;
       font-size:18px;
       border-radius: 10px 10px 10px 10px;
       min-width:120px;
@@ -86,6 +94,7 @@ const NameContainer = styled.div`
     }
     p{
       color:#f7f7f7;
+      margin-top:0px;
       margin-bottom:9px;
     }
 `;

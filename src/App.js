@@ -4,7 +4,7 @@ import {
   Route,
   Navigate
 } from 'react-router-dom';
-import Dashboard from './pages/Dashboard/index';
+import Pages from './pages';
 import { ToastContainer } from 'react-toastify';
 
 export default function App() {
@@ -16,7 +16,7 @@ export default function App() {
               <Route
                 path="/"
                 element={
-                    <Dashboard />
+                    <Pages />
                 }
               >
                 <Route index path="*" element={<Navigate to="/dashboard/subscription" />} />

@@ -10,7 +10,12 @@ function FormFunction({
     SetFinalValue,
     SetProductMenu,
     SetProductValue,
-    ingridienteArray
+    ingridienteArray,
+    calculatePercentageWithoutEvent,
+    ProductValue,
+    percentageMutiply,
+    SetPercentage,
+    SetPrecifyNumber,
 }){
     const [name, SetName] = useState('');
     const [value1, Setvalue1] = useState(0);
@@ -21,12 +26,11 @@ function FormFunction({
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        SetProductMenu(true);
         calculate(value1, value2);
-        if (!name || !value1 || !value2) {
-          return;
+        if (!name || !value1 || !value2 ) {
+          return
         }
-        console.log(unity.substring(1));
+        calculate(value1, value2);
         const sliceUnity = unity.substring(1);
         const newArray = {
           name,
@@ -35,13 +39,16 @@ function FormFunction({
           finalValue,
           color
         }
-      
+        SetProductMenu(true);
         SetColor(!color);
         SetIngridienteArray(ingridienteArray => [...ingridienteArray, newArray]);
         SetFinalValue(0);
         Setvalue1(0);
         Setvalue2(0);
         calculateProduct();
+        const newPercentage = calculatePercentageWithoutEvent({ProductValue, finalValue, percentageMutiply});
+        SetPercentage(newPercentage.percentage);
+        SetPrecifyNumber(newPercentage.precifyNumber)
         event.target.reset();
     }
     function calculate(n1, n2) {
@@ -59,10 +66,10 @@ function FormFunction({
       for (let i = 0; i < ingridienteArray.length; i++) {
         count = count + Number(ingridienteArray[i].finalValue);
       }
-      console.log(count);
       const finalCount = count + Number(finalValue);
       SetProductValue(Number(finalCount.toFixed(2)));
     }
+
       
     return(
     <form onSubmit={handleSubmit}>
