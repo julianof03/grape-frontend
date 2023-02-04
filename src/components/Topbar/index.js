@@ -7,7 +7,7 @@ export default function Topbar({
 return (
     <TopbarDiv>
         <p onClick={() => SetPageNumber(0)}>GRAPE</p>
-        <p onClick={() => SetPageNumber(1)}>O</p>
+        <p onClick={() => SetPageNumber(2)}>O</p>
     </TopbarDiv>
 );
 }

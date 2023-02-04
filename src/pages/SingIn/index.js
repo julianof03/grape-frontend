@@ -1,49 +1,39 @@
-import { useState, useContext, } from "react";
+import { useState, useContext } from "react";
 import styled from "styled-components";
-import useSignUp from "../../hooks/api/useSignUp";
-import UserContext from '../../contexts/UserContext';
 import { toast } from 'react-toastify';
+import useSignIn from '../../hooks/api/useSignIn';
+import UserContext from '../../contexts/UserContext';
 
-export default function SingUpPage({
+export default function SingInPage({
     SetPageNumber
 }) {
-    const [name, SetName] = useState("");
-    const [Email, SetEmail] = useState("");
-    const [passWord, SetPassWord] = useState("");
-    const [secondPassWord, SetSecondPassWord] = useState("");
-    const { signUp } = useSignUp();
+    const [email, SetEmail] = useState("");
+    const [password, SetPassword] = useState("");
+
+    const { signIn } = useSignIn();
     const { setUserData } = useContext(UserContext);
 
-
-
-    async function handleSubmit(event) {
+    async function HandleSubmit(event) {
         event.preventDefault();
-        if (!name || !Email || !passWord || !secondPassWord) {
+        if (!email || !password) {
             return
         }
         try {
-            console.log("entrei");
-            const userData = await signUp(name, Email, passWord);
+            const userData = await signIn(email, password);
             setUserData(userData);
-            SetPageNumber(2);
+            SetPageNumber(0);
             toast('Login realizado com sucesso!');
-            event.target.reset();
         } catch {
             toast('Não foi possível fazer o login!');
         }
+        event.target.reset();
     }
 
     return (
         <>
-            <SingUpContainer>
-                <form onSubmit={handleSubmit}>
+            <SingInContainer>
+                <form onSubmit={HandleSubmit}>
                     <p className='Title'>GRAPE</p>
-                    <input placeholder='Nome'
-                        type="Nome"
-                        id="Nome"
-                        name="Nome"
-                        onChange={(e) => SetName(e.target.value)}
-                    ></input>
                     <input placeholder='Email'
                         type="email"
                         id="Email"
@@ -52,25 +42,19 @@ export default function SingUpPage({
                     ></input>
                     <input placeholder='senha'
                         type="password"
-                        id="password"
-                        name="password"
-                        onChange={(e) => SetPassWord(e.target.value)}
+                        id="senha"
+                        name="senha"
+                        onChange={(e) => SetPassword(e.target.value)}
                     ></input>
-                    <input placeholder='Repita sua senha'
-                        type="password"
-                        id="Secondpassword"
-                        name="Secondpassword"
-                        onChange={(e) => SetSecondPassWord(e.target.value)}
-                    ></input>
-                    <button>Inscrever-se</button>
-                    <p className='Login' onClick={() => { SetPageNumber(2) }}>Ja está inscrito? faça login</p>
+                    <button>Entrar</button>
+                    <p className='Login' onClick={() => { SetPageNumber(1) }}>não está inscrito? inscreva-se</p>
                 </form>
-            </SingUpContainer>
+            </SingInContainer>
         </>
     );
 }
 
-const SingUpContainer = styled.div`
+const SingInContainer = styled.div`
     width:100%;
     height: 93vh;
     background-color:#A17dee;
@@ -82,8 +66,8 @@ const SingUpContainer = styled.div`
         width:400px;
         height:600px;
         border-radius: 10px;
-        background-color:#f7f7f7;
         position:relative;
+        background-color:#f7f7f7;
         display:flex;
         flex-direction:column;
         justify-content:center;
@@ -96,18 +80,18 @@ const SingUpContainer = styled.div`
             font-size:18px;
             border-radius: 10px;
             min-width:120px;
+            background-color:#e4dbf7;
             border:none;
             outline:none;
             color:#A17dee;
             text-align:center;
-            background-color:#e4dbf7;
             box-shadow: rgba(50, 50, 93, 0.15) 0px 6px 12px -6px, rgba(0, 0, 0, 0.3) 0px 3px 7px -30px;
             :focus{
                 ::placeholder{
                 font-size:18px;
                 color:#e4dbf7;
-            }
             } 
+            }
             ::placeholder{
                 font-size:18px;
                 color:#b291fa;
@@ -118,21 +102,21 @@ const SingUpContainer = styled.div`
             height:50px;
             margin-top:20px;
             font-size:22px;
-            border-radius: 10px;
             background-color:#A17dee;
             border:none;
             outline:none;
             color:#f7f7f7;
             text-align:center;
+            border-radius: 10px;
             box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -6px, rgba(0, 0, 0, 0.3) 0px 3px 7px -30px;    
         }
     }
     .Title{
         top:70px;
         font-size:44px;
+        color:#A17dee;
         position:absolute;
         font-weight:bold;
-        color:#A17dee;
     }
     .Login{
         bottom:70px;
@@ -141,6 +125,6 @@ const SingUpContainer = styled.div`
         color:#A17dee;
         :hover{
             cursor: pointer;
-      } 
+        } 
     }
 `;

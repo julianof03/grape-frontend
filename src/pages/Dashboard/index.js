@@ -1,61 +1,111 @@
 import { useState } from 'react';
-import {
-  Container, Ingredients,
-} from './DashboardStyle.js';
-import { FormFunction } from './Form';
-import {PrecifyFunction, calculatePercentageWithoutEvent} from './PrecifyContainer';
-
+import { FormFunction } from '../../components/dashboardComponents/Form';
+import { PrecifyFunction, calculatePercentageWithoutEvent } from '../../components/dashboardComponents/PrecifyContainer';
+import Ingredients from '../../components/dashboardComponents/ingredients/ingredients.js';
+import styled from 'styled-components';
 
 export default function Dashboard() {
 
   const [ingridienteArray, SetIngridienteArray] = useState([]);
-  const [finalValue, SetFinalValue] = useState(0);
+  const [percentage, SetPercentage] = useState(0);
+  const [percentageMutiply, SetPercentageMultiply] = useState(0)
   const [ProductMenu, SetProductMenu] = useState(false);
   const [ProductValue, SetProductValue] = useState(0);
   const [precifyNumber, SetPrecifyNumber] = useState(0);
-  const [percentage, SetPercentage] = useState(0);
-  const [percentageMutiply, SetPercentageMultiply] = useState(0)
+  const [finalValue, SetFinalValue] = useState(0);
 
-return (
-  <Container>
-    <FormFunction
-      ingridienteArray = {ingridienteArray}
-      SetIngridienteArray = {SetIngridienteArray}
-      percentage = {percentage}
-      SetProductMenu = {SetProductMenu}
-      SetProductValue = {SetProductValue}
-      finalValue = {finalValue}
-      ProductValue = {ProductValue}
-      SetFinalValue = {SetFinalValue}
-      SetPercentage = {SetPercentage}
-      SetPrecifyNumber = {SetPrecifyNumber}
-      percentageMutiply = {percentageMutiply}
-      calculatePercentageWithoutEvent = {calculatePercentageWithoutEvent}
-    />
+  function calculateProduct() {
+    SetProductMenu(true);
+    let count = 0;
+    for (let i = 0; i < ingridienteArray.length; i++) {
+      count = count + Number(ingridienteArray[i].finalValue);
+    }
+    const finalCount = count + Number(finalValue);
+    SetProductValue(Number(finalCount.toFixed(2)));
+  }
+  return (
+    <Container>
 
+      <FormFunction
+        calculateProduct = {calculateProduct}
+        SetIngridienteArray = {SetIngridienteArray}
+        percentage = {percentage}
+        SetProductMenu = {SetProductMenu}
+        finalValue = {finalValue}
+        ProductValue = {ProductValue}
+        SetFinalValue = {SetFinalValue}
+        SetPercentage = {SetPercentage}
+        SetPrecifyNumber = {SetPrecifyNumber}
+        percentageMutiply = {percentageMutiply}
+        ProductMenu= {ProductMenu}
+        calculatePercentageWithoutEvent = {calculatePercentageWithoutEvent}
+      />
+
+      <Ingredients
+        calculateProduct = {calculateProduct}
+        ingridienteArray = {ingridienteArray}
+        SetIngridienteArray = {SetIngridienteArray}
+        SetPrecifyNumber = {SetPrecifyNumber}
+        SetPercentage = {SetPercentage}
+        SetProductMenu = {SetProductMenu}
+      />
       {
-  ingridienteArray.map((e) => {
-    return (
-      <Ingredients color={e.color}>
-        <p>{e.name}: {e.quantidade}{e.unity} </p>
-        <p>R$ {e.finalValue}</p>
-      </Ingredients>);
-  })
-}
-{
-  ProductMenu ?
-    <PrecifyFunction
-      ProductValue = { ProductValue }
-      precifyNumber = { precifyNumber }
-      percentage = { percentage }
-      SetPercentage = {SetPercentage}
-      finalValue = {finalValue}
-      SetPrecifyNumber = {SetPrecifyNumber}
-      percentageMutiply = {percentageMutiply}
-      SetPercentageMultiply = {SetPercentageMultiply}
-    />:
-    <p className='message'>Você ainda não acrescentou nenhum ingrediente</p>
-}
+        ProductMenu ?
+          <PrecifyFunction
+            ProductValue = { ProductValue }
+            precifyNumber = { precifyNumber }
+            percentage = { percentage }
+            SetPercentage = {SetPercentage}
+            finalValue = {finalValue}
+            SetPrecifyNumber = {SetPrecifyNumber}
+            percentageMutiply = {percentageMutiply}
+            SetPercentageMultiply = {SetPercentageMultiply}
+          />:
+          <p className='message'>Você ainda não acrescentou nenhum ingrediente</p>
+      }
     </Container >
   );
 }
+const Container = styled.div`
+  padding: 30px;
+  padding-top:90px;
+  height: fit-content;
+  min-height:800px;
+  display:flex;
+  position:relative;
+  flex-direction:column;
+  align-items:center;
+  overflow-y: auto;
+
+  form{
+    width:50%;
+    height:60%;
+    min-height:125px;
+    position:relative;
+    max-width:500px;
+    background-color:#A17dee;
+    border-radius:20px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    min-width:330px;
+  }
+  .Submit{
+      position:absolute;
+      right:-15%;
+      height:25px;
+      width:25px;
+      border-radius: 5px 5px 5px 5px;
+      border:none;
+      background-color:#8057d3;
+      font-size:22px;
+      color:#f7f7f7;
+      :hover{
+            cursor: pointer;
+      }
+  }
+  .message{
+    color:#A17dee;
+    margin-top:105px;
+  }
+`;

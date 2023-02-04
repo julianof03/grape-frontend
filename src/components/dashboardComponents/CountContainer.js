@@ -2,17 +2,17 @@ import styled from 'styled-components';
 import { useState } from 'react';
 import { DivisorMenuFunction, GrandMenuFunction } from './Menus.js';
 function CountContainerFunction({
-    Setvalue1,
-    Setvalue2,
     value1,
     value2,
+    Setvalue1,
+    Setvalue2,
     calculate,
-    SetUnity,
     unity,
+    grandUnity,
+    SetUnity,
+    SetGrandUnity,
     finalValue,
     SetFinalValue,
-    grandUnity,
-    SetGrandUnity
 }){
     const [grandMenu, SetGrandMenu] = useState(false);
     const [divisorMenu, SetDivisorMenu] = useState(false);
@@ -79,6 +79,11 @@ const CountContainer = styled.div`
   height:94px;
   border-radius:12PX;
   min-width: 150px;
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button { 
+      -webkit-appearance: none; 
+      margin: 0; 
+    }
     input{
       background-color: #f7f7f7;
       color:#A17dee;
@@ -94,20 +99,21 @@ const CountContainer = styled.div`
     .Top{
       background-color:#ede8f7;
       font-size:20px;
-      padding-right:20px;
+      padding-right:33px;
       padding-left:20px;
       text-align:center;
       border-radius: 10px 10px 0px 0px;
       ::placeholder{
         color:#a17dee;
       }
+      
     }
     .Bottom{
       padding-left:14%;
       font-size:18px;
       border-radius: 0px 0px 10px 10px;
       text-align:center;
-      padding-right:20px;
+      padding-right:33px;
       ::placeholder{
         color:#b291fa;
       }

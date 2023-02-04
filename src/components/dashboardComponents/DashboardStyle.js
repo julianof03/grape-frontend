@@ -43,32 +43,6 @@ const Container = styled.div`
     margin-top:105px;
   }
 `;
-const Ingredients = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 65px;
-  min-width:330px;
-  max-width:500px;
-  padding:20px;
-  border-radius:10px 10px 10px 10px;
-  width:50%;
-  margin-top:30px;
-  background-color: ${(props) => {
-    if (props.color) {
-      return "#8E65E3";
-    } else {
-      return "#C6A3FC";
-    }
-  }};
-  color: ${(props) => {
-    if (props.color) {
-      return "#F7F7F7";
-    } else {
-      return "#FFFFFF";
-    }
-  }};
-`;
 const NameContainer = styled.div`
   width:36%;
   height:94px;
@@ -99,6 +73,6 @@ const NameContainer = styled.div`
     }
 `;
 export {
-    Container, Ingredients,
+    Container,
     NameContainer
 }
