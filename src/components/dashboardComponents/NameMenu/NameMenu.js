@@ -1,9 +1,11 @@
 import styled from 'styled-components';
 import { toast } from 'react-toastify';
 import useProduct from '../../../hooks/api/useProduct';
+import useIngredient from '../../../hooks/api/useIngredient';
 import { useState } from 'react';
 function NameMenu({
   ProductMenu,
+  ingridienteArray,
   SetProductMenu,
   SetIngridienteArray,
   SetPrecifyNumber,
@@ -11,13 +13,31 @@ function NameMenu({
 }){
   const [ProductName, SetProductName] = useState("");
   const { CreateProduct } = useProduct();
+  const { CreateIngredient } = useIngredient()
 
   async function HandleSubmit() {
     if (!ProductName) {
       return
     }
     try {
-      const userData = await CreateProduct(ProductName);
+      const productData = await CreateProduct(ProductName);
+
+      ingridienteArray.map(async(e) => {
+        const amount = Number(e.quantidade);
+        try{
+          const body = {
+            ingredientName: e.name,
+            price: e.finalValue,
+            productId: productData.id,
+            amount,
+            mesure: e.unity,
+          }
+          await CreateIngredient(body)
+          toast('ingrediente salvo com sucesso!');
+        }catch{
+          toast('Não foi possível salvar o ingrediente!');
+        }
+      });
 
       SetIngridienteArray([]);
       SetProductMenu(false);
@@ -36,7 +56,7 @@ function NameMenu({
       <input onChange={(e) => SetProductName(e.target.value)} placeholder='Nome do produto'></input>
       {ProductMenu ? <button onClick={HandleSubmit}>Salvar Produto</button> : ""}
     </NameContainer>
-  )
+  );
 }
 export { NameMenu }
 

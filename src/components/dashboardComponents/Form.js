@@ -4,6 +4,7 @@ import { CountContainerFunction } from './CountContainer.js'
 import { NameMenu } from './NameMenu/NameMenu.js'
 
 function FormFunction({
+  ingridienteArray,
   SetIngridienteArray,
   finalValue,
   SetFinalValue,
@@ -69,6 +70,7 @@ function FormFunction({
       <NameMenu
         ProductMenu={ProductMenu}
         SetProductMenu={SetProductMenu}
+        ingridienteArray = {ingridienteArray}
         SetIngridienteArray={SetIngridienteArray}
         SetPrecifyNumber={SetPrecifyNumber}
         SetPercentage={SetPercentage}
@@ -99,6 +101,7 @@ function FormFunction({
   );
 }
 export { FormFunction }
+
 const NameContainer = styled.div`
   width:36%;
   height:94px;

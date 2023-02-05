@@ -28,6 +28,7 @@ export default function Dashboard() {
 
       <FormFunction
         calculateProduct = {calculateProduct}
+        ingridienteArray = {ingridienteArray}
         SetIngridienteArray = {SetIngridienteArray}
         percentage = {percentage}
         SetProductMenu = {SetProductMenu}

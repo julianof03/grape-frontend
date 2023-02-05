@@ -14,12 +14,7 @@ export default function App() {
       <UserProvider>
           <Router>
             <Routes>
-              <Route
-                path="/"
-                element={
-                    <Pages />
-                }>
-              </Route>
+              <Route path="/" element={<Pages />}/>
             </Routes>
           </Router>
       </UserProvider>

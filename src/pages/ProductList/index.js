@@ -1,4 +1,7 @@
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { toast } from 'react-toastify';
+import useIngredient from '../../hooks/api/useIngredient';
 export default function Ingredients({
     ingridienteArray,
     SetIngridienteArray,
@@ -7,6 +10,12 @@ export default function Ingredients({
     SetPercentage,
     SetProductMenu,
 }) {
+
+    const [productList, SetProductList] = useState([])
+
+    useEffect(() => {
+      GetAllProducts()
+    }, []);
     function DeleteIngredient(i){
         ingridienteArray.splice(i,1)
         SetIngridienteArray([...ingridienteArray]);
@@ -17,6 +26,16 @@ export default function Ingredients({
         if(ingridienteArray.length === 0){
           SetProductMenu(false);
        }
+    }
+
+    async function GetAllProducts(){
+      try {
+        const ProductData = await useIngredient();
+        SetProductList(ProductData);
+        toast('produtos encontrados com sucesso!');
+    } catch {
+        toast('Não foi possível encontrar os produtos');
+    } 
     }
 
     return(
