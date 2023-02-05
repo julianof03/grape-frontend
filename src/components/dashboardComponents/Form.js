@@ -13,6 +13,7 @@ function FormFunction({
   ProductValue,
   percentageMutiply,
   SetPercentage,
+  precifyNumber,
   SetPrecifyNumber,
   ProductMenu,
   calculateProduct
@@ -74,6 +75,7 @@ function FormFunction({
         SetIngridienteArray={SetIngridienteArray}
         SetPrecifyNumber={SetPrecifyNumber}
         SetPercentage={SetPercentage}
+        precifyNumber ={precifyNumber}
       />
       <form onSubmit={handleSubmit}>
         <CountContainerFunction

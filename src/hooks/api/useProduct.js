@@ -3,13 +3,13 @@ import useToken from '../useToken';
 
 import * as productApi from '../../services/productApi';
 
-export default function useProduct() {
+export function PostProduct() {
   const token = useToken();
   const {
     loading: productLoading,
     error: productError,
     act: CreateProduct
-  } = useAsync((ProductName) => (productApi.CreateProduct(token , ProductName)));
+  } = useAsync((productName, productValue) => (productApi.CreateProduct(token , productName, productValue)));
 
   return {
     productLoading,

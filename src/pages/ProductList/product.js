@@ -1,46 +1,39 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
-import { toast } from 'react-toastify';
-import * as useProductList from '../../hooks/api/useProductList';
-import Product from './product';
-export default function ProdudctList() {
-
-    const [productList, SetProductList] = useState([])
+export default function Product({productList}) {
     const [productListMenu, SetProductListMenu] = useState(true)
-
-    const { ListAllProducts } = useProductList.GetProductList()
-
-    useEffect(() => {
-      GetAllProducts()
-    }, []);
-
-    async function GetAllProducts(){
-      try {
-        const ProductData = await ListAllProducts();
-        console.log(ProductData)
-        SetProductList(ProductData);
-    } catch {
-        toast('Não foi possível encontrar os produtos');
-    } 
+      if(productListMenu){
+        return(   
+            <Container>
+                <IngredientContainer 
+                    onClick={() => SetProductListMenu(false)} color={productList.color}>
+                    <p>{productList.productName}</p>
+                    <p>R$ {productList.productValue}</p>
+                </IngredientContainer>
+            </Container>
+        );
+      }
+      if(!productListMenu){
+        return(      
+            <Container>
+                <IngredientContainerList
+                    onClick={() => SetProductListMenu(true)} color={productList.color}>
+                    <div className='Title'>
+                    <p>{productList.productName}</p>
+                    <p>R$ {productList.productValue}</p>
+                    </div>
+                    {productList.ingredients.map((p)=> {
+                    return (
+                    <IngredientList>
+                        <p>{p.ingredientName}: {p.amount}{p.mesure} </p>
+                        <p>R$ {p.price}</p>
+                    </IngredientList>
+                    )
+                  })}
+                </IngredientContainerList>
+            </Container>
+        );
     }
-    console.log(productList)
-    if(productList.length >= 1){
-      return (
-        productList.map((e) => {
-          return (
-            <Product productList={e} />
-           );
-         }
-       )
-
-      )
-    }else{
-      return(  
-        <Alert> você ainda não adicionou nenhum produto</Alert>
-      )
-
-    }
-
 }
 
 const Alert = styled.div`

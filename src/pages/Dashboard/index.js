@@ -3,9 +3,10 @@ import { FormFunction } from '../../components/dashboardComponents/Form';
 import { PrecifyFunction, calculatePercentageWithoutEvent } from '../../components/dashboardComponents/PrecifyContainer';
 import Ingredients from '../../components/dashboardComponents/ingredients/ingredients.js';
 import styled from 'styled-components';
+import useToken from '../../hooks/useToken';
 
 export default function Dashboard() {
-
+  const token = useToken();
   const [ingridienteArray, SetIngridienteArray] = useState([]);
   const [percentage, SetPercentage] = useState(0);
   const [percentageMutiply, SetPercentageMultiply] = useState(0)
@@ -36,6 +37,7 @@ export default function Dashboard() {
         ProductValue = {ProductValue}
         SetFinalValue = {SetFinalValue}
         SetPercentage = {SetPercentage}
+        precifyNumber = {precifyNumber}
         SetPrecifyNumber = {SetPrecifyNumber}
         percentageMutiply = {percentageMutiply}
         ProductMenu= {ProductMenu}

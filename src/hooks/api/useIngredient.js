@@ -3,7 +3,7 @@ import useToken from '../useToken';
 
 import * as ingredientApi from '../../services/ingredientApi';
 
-export default function useIngredient() {
+export function PostIngredient() {
   const token = useToken();
   const {
     loading: ingredientLoading,

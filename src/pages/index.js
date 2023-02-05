@@ -3,17 +3,20 @@ import Dashboard from "./Dashboard";
 import SingUpPage from "./SingUp.js";
 import SingInPage from "./SingIn";
 import PageSwap from "../components/pageSwap";
+import ProdudctList from "../pages/ProductList"
 import { useState } from 'react';
 import styled from "styled-components";
+import useToken from '../hooks/useToken';
 
 export default function Pages() {
+    const token = useToken();
     const [pageNumber, SetPageNumber] = useState(0);
     if(pageNumber === 0){
         return (
         <Container>
             <Topbar SetPageNumber={SetPageNumber} />
             <Dashboard />
-            <PageSwap SetPageNumber={SetPageNumber} />
+            <PageSwap token={token} SetPageNumber={SetPageNumber} />
         </Container>
         )
     }
@@ -37,9 +40,8 @@ export default function Pages() {
         return (
             <Container>
                 <Topbar SetPageNumber={SetPageNumber} />
-                <Dashboard />
-                <p>jçadgjçdjadjglçadgjlç</p>
-                <PageSwap SetPageNumber={SetPageNumber} />
+                <ProdudctList />
+                <PageSwap token={token} SetPageNumber={SetPageNumber} />
             </Container>
         )
     }

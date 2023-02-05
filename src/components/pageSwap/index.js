@@ -1,13 +1,18 @@
 import styled from 'styled-components';
 
 export default function PageSwap({
+    token,
     SetPageNumber
 }) {
 
 return (
     <>
+    {token?  
+    <>
         <PageSwape1 onClick={()=> SetPageNumber(0)}>(</PageSwape1>
         <PageSwape2 onClick={()=> SetPageNumber(3)}>)</PageSwape2>
+    </>   
+    :  "" }
     </>
 );
 }
