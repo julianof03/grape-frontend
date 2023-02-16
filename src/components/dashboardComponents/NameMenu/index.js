@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { toast } from 'react-toastify';
-import * as useProduct from '../../../hooks/api/useProduct';
-import * as useIngredient from '../../../hooks/api/useIngredient';
+import {PostProduct} from '../../../hooks/api/useProduct';
+import {PostIngredient} from '../../../hooks/api/useIngredient';
 import { useState } from 'react';
 function NameMenu({
   ProductMenu,
@@ -14,12 +14,12 @@ function NameMenu({
 }) {
   const [ProductName, SetProductName] = useState("");
 
-
-  const { CreateProduct } = useProduct.PostProduct();
-  const { CreateIngredient } = useIngredient.PostIngredient();
+  const { CreateProduct } = PostProduct();
+  const { CreateIngredient } = PostIngredient();
 
   
 async function HandleSubmit() {
+
     if (!ProductName) {
       return
     }
@@ -41,6 +41,7 @@ async function HandleSubmit() {
           await CreateIngredient(body)
         } catch {
           toast('Não foi possível salvar o ingrediente!');
+          return
         }
       });
       SetIngridienteArray([]);
@@ -58,7 +59,7 @@ async function HandleSubmit() {
   return(
     <NameContainer>
       <input onChange={(e) => SetProductName(e.target.value)} placeholder='Nome'></input>
-      {ProductMenu ? <button onClick={HandleSubmit}>Salvar Produto</button> : ""}
+      {ProductMenu ? <button onClick={()=> HandleSubmit()}>Salvar Produto</button> : ""}
     </NameContainer>
   );
 }

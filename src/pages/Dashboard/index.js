@@ -52,8 +52,6 @@ export default function Dashboard() {
             SetPercentage = {SetPercentage}
             SetProductMenu = {SetProductMenu}
           />
-
-
         {
           ProductMenu ?
             <PrecifyFunction

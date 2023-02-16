@@ -1,6 +1,9 @@
 import api from './api';
 
 export async function CreateProduct(token, productName, productValue) {
+  if(!productName ||!productValue || !token){
+    return
+  }
   const body = {
     productName,
     productValue
