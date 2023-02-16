@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { FormFunction } from '../../components/dashboardComponents/Form';
 import { PrecifyFunction, calculatePercentageWithoutEvent } from '../../components/dashboardComponents/PrecifyContainer';
-import Ingredients from '../../components/dashboardComponents/ingredients/ingredients.js';
+import Ingredients from '../../components/dashboardComponents/ingredients/index.js';
 import styled from 'styled-components';
 import useToken from '../../hooks/useToken';
 
@@ -27,6 +27,7 @@ export default function Dashboard() {
   return (
     <Container>
 
+      <div className='Ingredients'>
       <FormFunction
         calculateProduct = {calculateProduct}
         ingridienteArray = {ingridienteArray}
@@ -43,35 +44,38 @@ export default function Dashboard() {
         ProductMenu= {ProductMenu}
         calculatePercentageWithoutEvent = {calculatePercentageWithoutEvent}
       />
-
-      <Ingredients
-        calculateProduct = {calculateProduct}
-        ingridienteArray = {ingridienteArray}
-        SetIngridienteArray = {SetIngridienteArray}
-        SetPrecifyNumber = {SetPrecifyNumber}
-        SetPercentage = {SetPercentage}
-        SetProductMenu = {SetProductMenu}
-      />
-      {
-        ProductMenu ?
-          <PrecifyFunction
-            ProductValue = { ProductValue }
-            precifyNumber = { precifyNumber }
-            percentage = { percentage }
-            SetPercentage = {SetPercentage}
-            finalValue = {finalValue}
+          <Ingredients
+            calculateProduct = {calculateProduct}
+            ingridienteArray = {ingridienteArray}
+            SetIngridienteArray = {SetIngridienteArray}
             SetPrecifyNumber = {SetPrecifyNumber}
-            percentageMutiply = {percentageMutiply}
-            SetPercentageMultiply = {SetPercentageMultiply}
-          />:
-          <p className='message'>Você ainda não acrescentou nenhum ingrediente</p>
-      }
+            SetPercentage = {SetPercentage}
+            SetProductMenu = {SetProductMenu}
+          />
+
+
+        {
+          ProductMenu ?
+            <PrecifyFunction
+              ProductValue = { ProductValue }
+              precifyNumber = { precifyNumber }
+              percentage = { percentage }
+              SetPercentage = {SetPercentage}
+              finalValue = {finalValue}
+              SetPrecifyNumber = {SetPrecifyNumber}
+              percentageMutiply = {percentageMutiply}
+              SetPercentageMultiply = {SetPercentageMultiply}
+            />:
+            <p className='message'>Você ainda não acrescentou nenhum ingrediente</p>
+        }
+      </div>
     </Container >
   );
 }
 const Container = styled.div`
   padding: 30px;
   padding-top:90px;
+  width:100%;
   height: fit-content;
   min-height:800px;
   display:flex;
@@ -79,20 +83,6 @@ const Container = styled.div`
   flex-direction:column;
   align-items:center;
   overflow-y: auto;
-
-  form{
-    width:50%;
-    height:60%;
-    min-height:125px;
-    position:relative;
-    max-width:500px;
-    background-color:#A17dee;
-    border-radius:20px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    min-width:330px;
-  }
   .Submit{
       position:absolute;
       right:-15%;
@@ -110,5 +100,26 @@ const Container = styled.div`
   .message{
     color:#A17dee;
     margin-top:105px;
+  }
+  .Ingredients{
+    width:50%;
+    display:flex;
+    flex-direction:column;
+    align-items:left;   
+  }
+
+  form{
+    align-items:left;
+    width:98%;
+    height:60%;
+    min-height:125px;
+    position:relative;
+    max-width:500px;
+    background-color:#A17dee;
+    border-radius:20px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    min-width:330px;
   }
 `;

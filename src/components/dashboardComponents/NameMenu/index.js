@@ -57,7 +57,7 @@ async function HandleSubmit() {
   }
   return(
     <NameContainer>
-      <input onChange={(e) => SetProductName(e.target.value)} placeholder='Nome do produto'></input>
+      <input onChange={(e) => SetProductName(e.target.value)} placeholder='Nome'></input>
       {ProductMenu ? <button onClick={HandleSubmit}>Salvar Produto</button> : ""}
     </NameContainer>
   );
@@ -65,10 +65,11 @@ async function HandleSubmit() {
 export { NameMenu }
 
 const NameContainer = styled.div`
-  width:45.2%;
+  width:88%;
   min-width:290px;
   max-width:460px;
   height:30px;
+  margin-left:18px;
   border-radius:15px 15px 0px 0px;
   height:fit-content;
   background-color: #A17dee;

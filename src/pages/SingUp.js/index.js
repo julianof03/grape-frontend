@@ -17,6 +17,7 @@ export default function SingUpPage({
 
 
     async function handleSubmit(event) {
+        console.log("here");
         event.preventDefault();
         if (!name || !Email || !passWord || !secondPassWord) {
             return
@@ -24,6 +25,7 @@ export default function SingUpPage({
         try {
             console.log("entrei");
             const userData = await signUp(name, Email, passWord);
+            console.log(userData)
             setUserData(userData);
             SetPageNumber(2);
             toast('Login realizado com sucesso!');

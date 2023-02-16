@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { useState } from 'react';
-import { DivisorMenuFunction, GrandMenuFunction } from './Menus.js';
+import { DivisorMenuFunction, GrandMenuFunction } from '../Menus.js';
 function CountContainerFunction({
     value1,
     value2,
@@ -18,7 +18,7 @@ function CountContainerFunction({
     const [divisorMenu, SetDivisorMenu] = useState(false);
     return(
     <CountContainer>
-        <input type="number" id="value1"
+        <input type="text" id="value1"
           name="value1"
           onChange={(e) => { Setvalue1(e.target.value); calculate(e.target.value, value2); }}
           className='Top'

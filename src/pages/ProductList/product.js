@@ -104,12 +104,13 @@ const IngredientContainer = styled.div`
 `;
 
 const IngredientContainerList = styled.div`
-  height: 250px;
+  height:auto;
+
   min-width:340px;
-    max-width:520px;
-    width:56%;
+  max-width:520px;
+  width:56%;
   margin-top:30px;
-  padding:20px 50px 20px 20px;
+  padding:70px 50px 20px 20px;
   border-radius:10px 10px 10px 10px;
   display: flex;
   align-items: center;
@@ -166,6 +167,7 @@ const IngredientContainerList = styled.div`
 `;
 
 const IngredientList = styled.div`
+  height:25px;
   width:100%;
   margin-right:-20px;
   border-radius:2px;

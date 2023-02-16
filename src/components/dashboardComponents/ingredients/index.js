@@ -33,9 +33,9 @@ export default function Ingredients({
 
 const IngredientContainer = styled.div`
   height: 65px;
-  min-width:330px;
+  min-width:290px;
   max-width:500px;
-  width:50%;
+  width:20%;
   margin-top:30px;
   padding:20px 50px 20px 20px;
   border-radius:10px 10px 10px 10px;

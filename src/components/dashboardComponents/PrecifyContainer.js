@@ -42,7 +42,7 @@ function calculatePercentageWithoutEvent({ ProductValue, finalValue, percentageM
 export { PrecifyFunction, calculatePercentageWithoutEvent }
 
 const PrecifyContainer = styled.div`
-  width:40%;
+  width:98%;
   max-width:400px;
   min-width:250px;
   margin-top:40px;

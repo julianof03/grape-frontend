@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import { useState } from 'react';
-import { CountContainerFunction } from './CountContainer.js'
-import { NameMenu } from './NameMenu/NameMenu.js'
+import { CountContainerFunction } from './countContainer'
+import { NameMenu } from './NameMenu/index.js'
+import { toast } from 'react-toastify';
 
 function FormFunction({
   ingridienteArray,
@@ -30,6 +31,11 @@ function FormFunction({
 
     if (!name || !value1 || !value2) return
     calculate(value1, value2);
+    if(isNaN(finalValue)){
+      console.log(Number(value1), Number(value2))
+      toast('algum dos valores não é um numero');
+      return
+    }
     const sliceUnity = unity.substring(1);
     const newArray = {
       name,
@@ -95,7 +101,7 @@ function FormFunction({
           <input placeholder='ingrediente'
             onChange={(e) => { SetName(e.target.value); }}
           ></input>
-          <p>R$ {finalValue}</p>
+          <p>R$ {(isNaN(finalValue))? "invalido":finalValue}</p>
         </NameContainer>
         <button type="submit" className='Submit'>+</button>
       </form>
@@ -103,6 +109,7 @@ function FormFunction({
   );
 }
 export { FormFunction }
+
 
 const NameContainer = styled.div`
   width:36%;
