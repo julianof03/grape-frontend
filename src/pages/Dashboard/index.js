@@ -96,6 +96,9 @@ const Container = styled.div`
       }
   }
   .message{
+    display:flex;
+    align-items:center;
+    justify-content:center;
     color:#A17dee;
     margin-top:105px;
   }
@@ -103,11 +106,10 @@ const Container = styled.div`
     width:50%;
     display:flex;
     flex-direction:column;
-    align-items:left;   
+    align-items:center;   
   }
 
   form{
-    align-items:left;
     width:98%;
     height:60%;
     min-height:125px;
@@ -118,6 +120,28 @@ const Container = styled.div`
     display:flex;
     align-items:center;
     justify-content:space-between;
-    min-width:330px;
+    min-width:300px;
+  }
+  @media (max-width: 430px) {
+    form{
+      min-width:295px;
+      input{
+      }
+  }
+  .Submit{
+      position:absolute;
+      height:30px;
+      bottom:-30%;
+      left:5%;
+      width:90%;
+      border-radius: 5px 5px 5px 5px;
+      border:none;
+      background-color:#8057d3;
+      font-size:22px;
+      color:#f7f7f7;
+      :hover{
+            cursor: pointer;
+      }
+  }
   }
 `;

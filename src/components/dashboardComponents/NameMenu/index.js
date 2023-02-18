@@ -67,10 +67,9 @@ export { NameMenu }
 
 const NameContainer = styled.div`
   width:88%;
-  min-width:290px;
+  min-width:270px;
   max-width:460px;
   height:30px;
-  margin-left:18px;
   border-radius:15px 15px 0px 0px;
   height:fit-content;
   background-color: #A17dee;
@@ -113,5 +112,7 @@ const NameContainer = styled.div`
             cursor: pointer;
         }
       }
-    
+    @media (max-width: 430px) {
+      min-width:260px;
+    }
 `;

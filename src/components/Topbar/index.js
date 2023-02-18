@@ -7,7 +7,7 @@ export default function Topbar({
 return (
     <TopbarDiv>
         <p onClick={() => SetPageNumber(0)}>GRAPE</p>
-        <p onClick={() => SetPageNumber(2)}>o
+        <p className='Profile1' onClick={() => SetPageNumber(2)}>o
         <p>G</p>
         </p>
 
@@ -15,6 +15,7 @@ return (
 );
 }
 const TopbarDiv = styled.div`
+    position:relative;
     width:100%;
     height:60px;
     border-radius:-25px;
@@ -23,6 +24,14 @@ const TopbarDiv = styled.div`
     padding:0px 20px 0px 20px;
     align-items:center;
     background-color:#A17dee;
+    .Profile1{
+        position:absolute;
+        top:10px;
+        right:35px;
+    }
+    .Profile2{
+
+    }
     p{
         position: relative;
         

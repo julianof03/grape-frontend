@@ -18,9 +18,9 @@ return (
 }
 const PageSwape1 = styled.div`
     position:absolute;
+    top:45vh;
     width:15%;
-    height:92vh;
-    top:60px;
+    height:20vh;
     font-size:25px;
     padding-left:20px;
     color:#A17dee;
@@ -34,9 +34,9 @@ const PageSwape1 = styled.div`
 `;
 const PageSwape2 = styled.div`
     position:absolute;
+    top:45vh;
     width:15%;
-    height:92vh;
-    top:60px;
+    height:20vh;
     right:0px;
     font-size:25px;
     padding-right:20px;

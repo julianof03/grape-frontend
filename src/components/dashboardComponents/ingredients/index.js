@@ -75,4 +75,21 @@ const IngredientContainer = styled.div`
         cursor: pointer;
     }
   }
+  @media (max-width: 430px) {
+    margin-top:60px;
+      button{
+      right:15px;
+      position:absolute;
+      background-color:${(props) => {
+          if (props.color) {
+          return "#8E65E3";
+          } else {
+          return "#C6A3FC";
+          }
+      }};
+      border-style:none;
+      color: red;
+      font-size:14px;
+    }
+  }
 `;

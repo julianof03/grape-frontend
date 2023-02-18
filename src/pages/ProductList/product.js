@@ -36,27 +36,19 @@ export default function Product({productList}) {
     }
 }
 
-const Alert = styled.div`
-height:90vh;
-color:#8E65E3;
-display:flex;
-align-items:center;
-justify-content:center;
-
-`;
 const Container = styled.div`
   display:flex;
   align-items:center;
   justify-content:center;
-  margin-top:70px;
+  margin-top:20px;
 `;
 const IngredientContainer = styled.div`
   height: 65px;
-  min-width:330px;
+  min-width:300px;
   max-width:500px;
   width:50%;
   margin-top:30px;
-  padding:20px 50px 20px 20px;
+  padding:20px 20px 20px 20px;
   border-radius:10px 10px 10px 10px;
   display: flex;
   align-items: center;
@@ -100,13 +92,21 @@ const IngredientContainer = styled.div`
     max-width:520px;
     width:56%;
   }
-
+  @media (max-width: 400px) {
+    height: 65px;
+    min-width:260px;
+    max-width:500px;
+    width:50%;
+    margin-top:30px;
+    padding:20px 20px 20px 20px;
+    border-radius:10px 10px 10px 10px;
+  }
 `;
 
 const IngredientContainerList = styled.div`
   height:auto;
 
-  min-width:340px;
+  min-width:320px;
   max-width:520px;
   width:56%;
   margin-top:30px;
@@ -163,7 +163,10 @@ const IngredientContainerList = styled.div`
     background-color:#C6A3FC;
 
   }
-
+  @media (max-width: 430px) {
+    padding:55px 20px 15px 4px;
+    min-width:260px;
+  }
 `;
 
 const IngredientList = styled.div`
@@ -178,4 +181,5 @@ const IngredientList = styled.div`
   border-style:none none solid none;
   align-items:center;
 `;
+
 

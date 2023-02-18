@@ -19,7 +19,7 @@ function PrecifyFunction({
   }
   return (
     <PrecifyContainer>
-      <div><p>Valor Estimado:</p><p>R$ {ProductValue}</p>  </div>
+      <div><p>Valor Estimado:</p><p>R$ {ProductValue.toFixed(2)}</p>  </div>
       <div><p>Porcentagem de Lucro:</p><input type="number" placeholder='%' onChange={(e) => { calculatePercentage(e) }}></input>  </div>
       <div><p>Valor Final:</p><p>R$ {precifyNumber}</p>  </div>
       <div><p>Lucro total</p><p>R$ {percentage}</p>  </div>
